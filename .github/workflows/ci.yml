@@ -1,0 +1,43 @@
+
+name: Crawler NSYSU Bus
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '*/5 * * * *'
+jobs:
+  curl:
+    name: Crawler and Publish
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set checkout
+      uses: actions/checkout@v2
+    - name: mkdir dir
+      run: mkdir build
+    - run: export time=$(($(date +%s%N)/1000))
+    - run: echo $time
+    - name: Instal CURL
+      run: sudo apt install -y curl
+    - name: Use curl download zh
+      run: curl https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=SC -o tmp_zh.json
+    - name: Use curl download en
+      run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=SC' -o tmp_en.json
+    - run: rm -f bus_info_data_zh.json
+    - name: Use JD
+      uses: r26d/jq-action@master
+      with:
+        cmd: jq -n env
+    - name: merge zh json
+      run: jq -s '.[0] + .[1]' bus_zh.json tmp_zh.json >> build/bus_info_data_zh.json
+    - name: merge en json
+      run: jq -s '.[0] + .[1]' bus_en.json tmp_en.json >> build/bus_info_data_en.json
+    - name: Deploy
+      run: |
+        cd build
+        git init
+        git config user.name  "CI"
+        git config user.email "flutter-ci@github.com"
+        git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/abc873693/nsysu-bus-test.git
+        git checkout -b gh-pages
+        git add .
+        git commit -m "Updated site"
+        git push --force secure-origin gh-pages
