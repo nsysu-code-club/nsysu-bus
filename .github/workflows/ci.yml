@@ -4,6 +4,8 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '*/5 * * * *'
+  push:
+  workflow_dispatch:
 jobs:
   curl:
     name: Crawler and Publish
@@ -20,10 +22,10 @@ jobs:
       run: curl https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=SC -o tmp_zh.json
     - name: Use curl download SC en
       run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=SC' -o tmp_en.json
-    - name: Use curl download CH zh
-      run: curl https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=CH -o bus_zh.json
-    - name: Use curl download CH en
-      run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=CH' -o bus_en.json
+    - name: Use curl download CT zh
+      run: curl https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=CT -o bus_zh.json
+    - name: Use curl download CT en
+      run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=CT' -o bus_en.json
     - run: rm -f bus_info_data_zh.json
     - name: Use JD
       uses: r26d/jq-action@master
