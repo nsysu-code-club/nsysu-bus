@@ -16,10 +16,14 @@ jobs:
     - run: export time=$(($(date +%s%N)/1000))
     - name: Instal CURL
       run: sudo apt install -y curl
-    - name: Use curl download zh
+    - name: Use curl download SC zh
       run: curl https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=SC -o tmp_zh.json
-    - name: Use curl download en
+    - name: Use curl download SC en
       run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=SC' -o tmp_en.json
+    - name: Use curl download CH zh
+      run: curl https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=CH -o bus_zh.json
+    - name: Use curl download CH en
+      run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=CH' -o bus_en.json
     - run: rm -f bus_info_data_zh.json
     - name: Use JD
       uses: r26d/jq-action@master
