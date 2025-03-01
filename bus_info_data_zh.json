@@ -1,0 +1,191 @@
+[
+  {
+    "CarID": "EAL-0955,",
+    "StopName": "",
+    "RouteID": 50,
+    "Name": "50五福幹線",
+    "isOpenData": "Y",
+    "Departure": "鼓山輪渡站",
+    "Destination": "建軍站(捷運衛武營站)"
+  },
+  {
+    "CarID": "EAL-0977,",
+    "StopName": "",
+    "RouteID": 219,
+    "Name": "219 A",
+    "isOpenData": "Y",
+    "Departure": "大智路(光榮國小)",
+    "Destination": "加昌站"
+  },
+  {
+    "CarID": "911-V2,",
+    "StopName": "",
+    "RouteID": 248,
+    "Name": "248",
+    "isOpenData": "Y",
+    "Departure": "濱海二路",
+    "Destination": "捷運衛武營站"
+  },
+  {
+    "CarID": "KKB-8112,",
+    "StopName": "",
+    "RouteID": 852,
+    "Name": "紅52",
+    "isOpenData": "Y",
+    "Departure": "中山大學",
+    "Destination": "台鐵新左營站"
+  },
+  {
+    "CarID": "EAL-2971,",
+    "StopName": "",
+    "RouteID": 901,
+    "Name": "橘1",
+    "isOpenData": "Y",
+    "Departure": "文學院",
+    "Destination": "棧貳庫"
+  },
+  {
+    "CarID": "KKA-9180,",
+    "StopName": "",
+    "RouteID": 2192,
+    "Name": "219 B",
+    "isOpenData": "Y",
+    "Departure": "捷運西子灣站",
+    "Destination": "大智路(光榮國小)"
+  },
+  {
+    "CarID": "KKB-8098,",
+    "StopName": "",
+    "RouteID": 2482,
+    "Name": "248區間車",
+    "isOpenData": "Y",
+    "Departure": "濱海二路",
+    "Destination": "高雄火車站(捷運高雄車站)"
+  },
+  {
+    "CarID": "EAL-2971,",
+    "StopName": "",
+    "RouteID": 9011,
+    "Name": "橘1延駛",
+    "isOpenData": "Y",
+    "Departure": "慈德宮",
+    "Destination": "棧貳庫"
+  },
+  {
+    "RouteID": 11,
+    "StopName": "未行駛",
+    "Name": "校11",
+    "isOpenData": "",
+    "Departure": "行政大樓",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 12,
+    "StopName": "未行駛",
+    "Name": "校12",
+    "isOpenData": "",
+    "Departure": "H棟宿舍",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 13,
+    "StopName": "未行駛",
+    "Name": "校13",
+    "isOpenData": "",
+    "Departure": "行政大樓",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 14,
+    "StopName": "未行駛",
+    "Name": "校14",
+    "isOpenData": "",
+    "Departure": "H棟宿舍",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 21,
+    "StopName": "未行駛",
+    "Name": "校21",
+    "isOpenData": "",
+    "Departure": "H棟宿舍",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 22,
+    "StopName": "未行駛",
+    "Name": "校22",
+    "isOpenData": "",
+    "Departure": "H棟宿舍",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 23,
+    "StopName": "未行駛",
+    "Name": "校23",
+    "isOpenData": "",
+    "Departure": "H棟宿舍",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 24,
+    "StopName": "未行駛",
+    "Name": "校24",
+    "isOpenData": "",
+    "Departure": "H棟宿舍",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 25,
+    "StopName": "未行駛",
+    "Name": "校25",
+    "isOpenData": "",
+    "Departure": "H棟宿舍",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 26,
+    "StopName": "未行駛",
+    "Name": "校26",
+    "isOpenData": "",
+    "Departure": "文學院",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 31,
+    "StopName": "未行駛",
+    "Name": "校31",
+    "isOpenData": "",
+    "Departure": "H棟宿舍",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 32,
+    "StopName": "未行駛",
+    "Name": "校32",
+    "isOpenData": "",
+    "Departure": "文學院",
+    "Destination": "H棟宿舍",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 41,
+    "StopName": "未行駛",
+    "Name": "校41",
+    "isOpenData": "",
+    "Departure": "行政大樓",
+    "Destination": "文學院",
+    "UpdateTime": ""
+  }
+]

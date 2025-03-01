@@ -1,0 +1,191 @@
+[
+  {
+    "CarID": "EAL-0955,",
+    "StopName": "",
+    "RouteID": 50,
+    "NameEn": "50 Wufu Main Line",
+    "isOpenData": "Y",
+    "DepartureEn": "Gushan Ferry Pier Station",
+    "DestinationEn": "Jianjun Station (MRT Weiwuying Station)"
+  },
+  {
+    "CarID": "EAL-0977,",
+    "StopName": "",
+    "RouteID": 219,
+    "NameEn": "219 A",
+    "isOpenData": "Y",
+    "DepartureEn": "Jiachang Station",
+    "DestinationEn": "Dajhih Rd. (Guangrong Elementary School)"
+  },
+  {
+    "CarID": "911-V2,",
+    "StopName": "",
+    "RouteID": 248,
+    "NameEn": "248",
+    "isOpenData": "Y",
+    "DepartureEn": "Binhai 2nd Rd.",
+    "DestinationEn": "Jianjun Station (MRT Weiwuying Station)"
+  },
+  {
+    "CarID": "KKB-8112,",
+    "StopName": "",
+    "RouteID": 852,
+    "NameEn": "Red 52",
+    "isOpenData": "Y",
+    "DepartureEn": "National Sun Yat-sen University",
+    "DestinationEn": "TRA New Zuoying Station"
+  },
+  {
+    "CarID": "EAL-2971,",
+    "StopName": "",
+    "RouteID": 901,
+    "NameEn": "Orange 1",
+    "isOpenData": "Y",
+    "DepartureEn": "College of Liberal Arts",
+    "DestinationEn": "KW2"
+  },
+  {
+    "CarID": "KKA-9180,",
+    "StopName": "",
+    "RouteID": 2192,
+    "NameEn": "219 B",
+    "isOpenData": "Y",
+    "DepartureEn": "MRT Sizihwan Station",
+    "DestinationEn": "Dajhih Rd. (Guangrong Elementary School)"
+  },
+  {
+    "CarID": "KKB-8098,",
+    "StopName": "",
+    "RouteID": 2482,
+    "NameEn": "248(Interval)",
+    "isOpenData": "Y",
+    "DepartureEn": "Binhai 2nd Rd.",
+    "DestinationEn": "Kaohsiung Train Station (MRT Kaohsiung Main Station)"
+  },
+  {
+    "CarID": "EAL-2971,",
+    "StopName": "",
+    "RouteID": 9011,
+    "NameEn": "Orange1(Extend)",
+    "isOpenData": "Y",
+    "DepartureEn": "Cihde Temple",
+    "DestinationEn": "KW2"
+  },
+  {
+    "RouteID": 11,
+    "StopName": "未行駛",
+    "NameEn": "Campus 11",
+    "isOpenData": "",
+    "DepartureEn": "Administration Square",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 12,
+    "StopName": "未行駛",
+    "NameEn": "Campus 12",
+    "isOpenData": "",
+    "DepartureEn": "Dorm H",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 13,
+    "StopName": "未行駛",
+    "NameEn": "Campus 13",
+    "isOpenData": "",
+    "DepartureEn": "Administration Square",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 14,
+    "StopName": "未行駛",
+    "NameEn": "Campus 14",
+    "isOpenData": "",
+    "DepartureEn": "Dorm H",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 21,
+    "StopName": "未行駛",
+    "NameEn": "Campus 21",
+    "isOpenData": "",
+    "DepartureEn": "Dorm H",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 22,
+    "StopName": "未行駛",
+    "NameEn": "Campus 22",
+    "isOpenData": "",
+    "DepartureEn": "Dorm H",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 23,
+    "StopName": "未行駛",
+    "NameEn": "Campus 23",
+    "isOpenData": "",
+    "DepartureEn": "Dorm H",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 24,
+    "StopName": "未行駛",
+    "NameEn": "Campus 24",
+    "isOpenData": "",
+    "DepartureEn": "Dorm H",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 25,
+    "StopName": "未行駛",
+    "NameEn": "Campus 25",
+    "isOpenData": "",
+    "DepartureEn": "Dorm H",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 26,
+    "StopName": "未行駛",
+    "NameEn": "Campus 26",
+    "isOpenData": "",
+    "DepartureEn": "College of Liberal Arts",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 31,
+    "StopName": "未行駛",
+    "NameEn": "Campus 31",
+    "isOpenData": "",
+    "DepartureEn": "Dorm H",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 32,
+    "StopName": "未行駛",
+    "NameEn": "Campus 32",
+    "isOpenData": "",
+    "DepartureEn": "College of Liberal Arts",
+    "DestinationEn": "Dorm H",
+    "UpdateTime": ""
+  },
+  {
+    "RouteID": 41,
+    "StopName": "未行駛",
+    "NameEn": "Campus 41",
+    "isOpenData": "",
+    "DepartureEn": "Administration Square",
+    "DestinationEn": "College of Liberal Arts",
+    "UpdateTime": ""
+  }
+]
