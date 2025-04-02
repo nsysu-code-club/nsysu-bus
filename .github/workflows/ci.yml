@@ -27,6 +27,7 @@ jobs:
     - name: Use curl download CT en
       run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=CT' -o bus_en.json
     - run: rm -f bus_info_data_zh.json
+    - run: rm -f bus_info_data_en.json
     - name: Use JD
       uses: r26d/jq-action@master
       with:
