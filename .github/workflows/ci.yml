@@ -36,6 +36,10 @@ jobs:
       run: jq -s '.[0] + .[1]' bus_zh.json tmp_zh.json >> build/bus_info_data_zh.json
     - name: merge en json
       run: jq -s '.[0] + .[1]' bus_en.json tmp_en.json >> build/bus_info_data_en.json
+    - name: Copy static files
+      run: |
+        cp bus_list_zh.json build/bus_list_zh.json
+        cp bus_list_en.json build/bus_list_en.json
     - name: Deploy
       run: |
         cd build
