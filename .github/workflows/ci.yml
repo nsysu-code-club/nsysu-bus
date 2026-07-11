@@ -20,16 +20,16 @@ jobs:
       run: sudo apt install -y curl
     - name: Use curl download SC zh
       continue-on-error: true
-      run: curl -f https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=SC -o tmp_zh.json
+      run: curl -f -m 40 https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=SC -o tmp_zh.json
     - name: Use curl download SC en
       continue-on-error: true
-      run: curl -f 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=SC' -o tmp_en.json
+      run: curl -f -m 40 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=SC' -o tmp_en.json
     - name: Use curl download CT zh
       continue-on-error: true
-      run: curl -f https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=CT -o bus_zh.json
+      run: curl -f -m 40 https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=CT -o bus_zh.json
     - name: Use curl download CT en
       continue-on-error: true
-      run: curl -f 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=CT' -o bus_en.json
+      run: curl -f -m 40 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=CT' -o bus_en.json
     - run: rm -f bus_info_data_zh.json
     - run: rm -f bus_info_data_en.json
     - name: Use JD
