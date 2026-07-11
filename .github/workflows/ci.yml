@@ -19,13 +19,17 @@ jobs:
     - name: Instal CURL
       run: sudo apt install -y curl
     - name: Use curl download SC zh
-      run: curl https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=SC -o tmp_zh.json
+      continue-on-error: true
+      run: curl -f https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=SC -o tmp_zh.json
     - name: Use curl download SC en
-      run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=SC' -o tmp_en.json
+      continue-on-error: true
+      run: curl -f 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=SC' -o tmp_en.json
     - name: Use curl download CT zh
-      run: curl https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=CT -o bus_zh.json
+      continue-on-error: true
+      run: curl -f https://ibus.nsysu.edu.tw/API/RoutePath.aspx\?$time\&T=CT -o bus_zh.json
     - name: Use curl download CT en
-      run: curl 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=CT' -o bus_en.json
+      continue-on-error: true
+      run: curl -f 'https://ibus.nsysu.edu.tw/API/RoutePath.aspx?&C=en&T=CT' -o bus_en.json
     - run: rm -f bus_info_data_zh.json
     - run: rm -f bus_info_data_en.json
     - name: Use JD
@@ -33,9 +37,21 @@ jobs:
       with:
         cmd: jq -n env
     - name: merge zh json
-      run: jq -s '.[0] + .[1]' bus_zh.json tmp_zh.json >> build/bus_info_data_zh.json
+      continue-on-error: true
+      run: jq -s '.[0] + .[1]' bus_zh.json tmp_zh.json > build/bus_info_data_zh.json
     - name: merge en json
-      run: jq -s '.[0] + .[1]' bus_en.json tmp_en.json >> build/bus_info_data_en.json
+      continue-on-error: true
+      run: jq -s '.[0] + .[1]' bus_en.json tmp_en.json > build/bus_info_data_en.json
+    - name: Fallback to previous gh-pages data if API failed
+      run: |
+        if [ ! -s build/bus_info_data_zh.json ]; then
+          echo "API data empty or missing. Fetching previous data from gh-pages..."
+          curl -sL https://raw.githubusercontent.com/nsysu-code-club/nsysu-bus/gh-pages/bus_info_data_zh.json -o build/bus_info_data_zh.json || true
+        fi
+        if [ ! -s build/bus_info_data_en.json ]; then
+          echo "API data empty or missing. Fetching previous data from gh-pages..."
+          curl -sL https://raw.githubusercontent.com/nsysu-code-club/nsysu-bus/gh-pages/bus_info_data_en.json -o build/bus_info_data_en.json || true
+        fi
     - name: Copy static files
       run: |
         cp bus_list_zh.json build/bus_list_zh.json
