@@ -1,31 +1,31 @@
 [
     {
         "NameEn":"Orange 1",
-        "RouteID":"KHH901",
+        "RouteID":901,
         "DepartureEn":"College of Liberal Arts",
         "DestinationEn":"Hamasen Feeder Station(LRT Hamasen Station)"
     },
     {
         "NameEn":"Orange 1 (Extend)",
-        "RouteID":"KHH9011",
+        "RouteID":9011,
         "DepartureEn":"Cihde Temple",
         "DestinationEn":"Hamasen Feeder Station(LRT Hamasen Station)"
     },
     {
         "NameEn":"50 Wufu Main Line",
-        "RouteID":"KHH50",
+        "RouteID":50,
         "DepartureEn":"Gushan Ferry Station",
         "DestinationEn":"Zihyou Rd.(Clothing factory)"
     },
     {
         "NameEn":"219A",
-        "RouteID":"KHH219",
+        "RouteID":219,
         "DepartureEn":"MRT Yanchengpu Station(Daren Rd.)",
         "DestinationEn":"Jiachang Station"
     },
     {
         "NameEn":"219B",
-        "RouteID":"KHH2192",
+        "RouteID":2192,
         "DepartureEn":"MRT Yanchengpu Station(Daren Rd.)",
         "DestinationEn":"Jiachang Station"
     }
