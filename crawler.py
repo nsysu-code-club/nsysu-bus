@@ -124,7 +124,7 @@ def process_language(lang_code, list_file, output_file, name_key, dep_key, dest_
             stop_name = "未行駛" if lang_code == "zh" else "Out of service"
 
         item = {
-            "CarID": car_ids,
+            **({"CarID": car_ids} if car_ids else {}),
             "StopName": stop_name,
             "RouteID": route_id,
             name_key: name,
