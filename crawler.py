@@ -2,11 +2,17 @@ import json
 import requests
 import urllib3
 import os
+import time
 from datetime import datetime
 
 urllib3.disable_warnings()
 
 URL = "https://ibus.tbkc.gov.tw/ibus/graphql"
+
+PROXIES = {
+    "http": "http://220.134.5.4:8080",
+    "https": "http://220.134.5.4:8080",
+}
 
 QUERY_ROUTE = """
 fragment busesFragment on RouteBusConnection { edges { node { id } } }
@@ -32,37 +38,46 @@ query QUERY_SIDE_ROUTES($lang: String!) {
 """
 
 def fetch_all_routes_info(lang):
-    try:
-        response = requests.post(
-            URL, 
-            json={'query': QUERY_SIDE_ROUTES, 'variables': {'lang': lang}}, 
-            verify=False,
-            timeout=10
-        )
-        data = response.json()
-        routes_map = {}
-        if 'data' in data and data['data']['routes']:
-            for edge in data['data']['routes']['edges']:
-                node = edge['node']
-                routes_map[int(node['id'])] = node['name']
-        return routes_map
-    except Exception as e:
-        print(f"Error fetching all routes for {lang}: {e}")
+    for attempt in range(5):
+        try:
+            response = requests.post(
+                URL, 
+                json={'query': QUERY_SIDE_ROUTES, 'variables': {'lang': lang}}, 
+                verify=False,
+                proxies=PROXIES,
+                timeout=20
+            )
+            data = response.json()
+            routes_map = {}
+            if 'data' in data and data['data']['routes']:
+                for edge in data['data']['routes']['edges']:
+                    node = edge['node']
+                    routes_map[int(node['id'])] = node['name']
+            return routes_map
+        except Exception as e:
+            print(f"Error fetching all routes for {lang} (Attempt {attempt + 1}/3): {e}")
+            if attempt < 2:
+                time.sleep(1)
     return {}
 
 def fetch_route_data(route_id, lang):
-    try:
-        response = requests.post(
-            URL, 
-            json={'query': QUERY_ROUTE, 'variables': {'routeId': route_id, 'lang': lang}}, 
-            verify=False,
-            timeout=10
-        )
-        data = response.json()
-        if 'data' in data and data['data']['route']:
-            return data['data']['route']
-    except Exception as e:
-        print(f"Error fetching route {route_id} for {lang}: {e}")
+    for attempt in range(5):
+        try:
+            response = requests.post(
+                URL, 
+                json={'query': QUERY_ROUTE, 'variables': {'routeId': route_id, 'lang': lang}}, 
+                verify=False,
+                proxies=PROXIES,
+                timeout=15
+            )
+            data = response.json()
+            if 'data' in data and data['data']['route']:
+                return data['data']['route']
+            return None
+        except Exception as e:
+            print(f"Error fetching route {route_id} for {lang} (Attempt {attempt + 1}/3): {e}")
+            if attempt < 2:
+                time.sleep(1)
     return None
 
 def process_language(lang_code, list_file, output_file, name_key, dep_key, dest_key):
