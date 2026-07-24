@@ -1,0 +1,51 @@
+[
+    {
+        "StopName": "未行駛",
+        "RouteID": 901,
+        "Name": "橘1",
+        "isOpenData": "Y",
+        "Departure": "哈瑪星旅運接駁中心(輕軌哈瑪星站)",
+        "Destination": "中山大學文學院",
+        "UpdateTime": "2026-07-24T22:19:49"
+    },
+    {
+        "CarID": "EAL-2983,",
+        "StopName": "",
+        "RouteID": 9011,
+        "Name": "橘1延",
+        "isOpenData": "Y",
+        "Departure": "哈瑪星旅運接駁中心(輕軌哈瑪星站)",
+        "Destination": "慈德宮",
+        "UpdateTime": "2026-07-24T22:19:51"
+    },
+    {
+        "CarID": "EAL-5709,EAL-5721,EAL-5723,EAL-5777,",
+        "StopName": "",
+        "RouteID": 50,
+        "Name": "50五福幹線",
+        "isOpenData": "Y",
+        "Departure": "自由路(被服廠)",
+        "Destination": "鼓山輪渡站",
+        "UpdateTime": "2026-07-24T22:19:53"
+    },
+    {
+        "CarID": "EAL-5775,",
+        "StopName": "",
+        "RouteID": 219,
+        "Name": "219A",
+        "isOpenData": "Y",
+        "Departure": "加昌站",
+        "Destination": "捷運鹽埕埔站(大仁路)",
+        "UpdateTime": "2026-07-24T22:19:56"
+    },
+    {
+        "CarID": "EAL-5736,",
+        "StopName": "",
+        "RouteID": 2192,
+        "Name": "219B",
+        "isOpenData": "Y",
+        "Departure": "加昌站",
+        "Destination": "捷運鹽埕埔站(大仁路)",
+        "UpdateTime": "2026-07-24T22:20:08"
+    }
+]
