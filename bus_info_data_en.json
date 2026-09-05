@@ -1,0 +1,47 @@
+[
+    {
+        "StopName": "Out of service",
+        "RouteID": 901,
+        "NameEn": "Orange 1",
+        "isOpenData": "Y",
+        "DepartureEn": "Hamasen Feeder Station(LRT Hamasen Station)",
+        "DestinationEn": "College Of Liberal Arts of NSYSU",
+        "UpdateTime": "2026-09-05T16:16:06"
+    },
+    {
+        "StopName": "Out of service",
+        "RouteID": 9011,
+        "NameEn": "Orange 1 (Extend)",
+        "isOpenData": "Y",
+        "DepartureEn": "Cihde Temple",
+        "DestinationEn": "Hamasen Feeder Station(LRT Hamasen Station)",
+        "UpdateTime": "2026-09-05T16:17:23"
+    },
+    {
+        "StopName": "Out of service",
+        "RouteID": 50,
+        "NameEn": "50 Wufu Main Line",
+        "isOpenData": "Y",
+        "DepartureEn": "Zihyou Rd.(Clothing factory)",
+        "DestinationEn": "Gushan Ferry Station",
+        "UpdateTime": "2026-09-05T16:17:40"
+    },
+    {
+        "StopName": "Out of service",
+        "RouteID": 219,
+        "NameEn": "219A",
+        "isOpenData": "Y",
+        "DepartureEn": "Jiachang Station",
+        "DestinationEn": "MRT Yanchengpu Station (Daren Rd.)",
+        "UpdateTime": "2026-09-05T16:17:50"
+    },
+    {
+        "StopName": "Out of service",
+        "RouteID": 2192,
+        "NameEn": "219B",
+        "isOpenData": "Y",
+        "DepartureEn": "Jiachang Station",
+        "DestinationEn": "MRT Yanchengpu Station (Daren Rd.)",
+        "UpdateTime": "2026-09-05T16:17:53"
+    }
+]
