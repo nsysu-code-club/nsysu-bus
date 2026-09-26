@@ -1,0 +1,49 @@
+[
+    {
+        "StopName": "Out of service",
+        "RouteID": 901,
+        "NameEn": "Orange1",
+        "isOpenData": "Y",
+        "DepartureEn": "Hamasen Feeder Station(LRT Hamasen Station)",
+        "DestinationEn": "College Of Liberal Arts of NSYSU",
+        "UpdateTime": "2026-09-26T15:28:47"
+    },
+    {
+        "StopName": "Out of service",
+        "RouteID": 9011,
+        "NameEn": "Orange1(Extend)",
+        "isOpenData": "Y",
+        "DepartureEn": "Cihde Temple",
+        "DestinationEn": "Hamasen Feeder Station(LRT Hamasen Station)",
+        "UpdateTime": "2026-09-26T15:30:04"
+    },
+    {
+        "CarID": "EAL-5785,",
+        "StopName": "",
+        "RouteID": 50,
+        "NameEn": "50 Wufu Main Line",
+        "isOpenData": "Y",
+        "DepartureEn": "Zihyou Rd.(Clothing factory)",
+        "DestinationEn": "Gushan Ferry Station",
+        "UpdateTime": "2026-09-26T15:30:41"
+    },
+    {
+        "CarID": "EAL-5860,",
+        "StopName": "",
+        "RouteID": 219,
+        "NameEn": "219A",
+        "isOpenData": "Y",
+        "DepartureEn": "Jiachang Station",
+        "DestinationEn": "MRT Yanchengpu Station (Daren Rd.)",
+        "UpdateTime": "2026-09-26T15:30:51"
+    },
+    {
+        "StopName": "Out of service",
+        "RouteID": 2192,
+        "NameEn": "219B",
+        "isOpenData": "Y",
+        "DepartureEn": "Jiachang Station",
+        "DestinationEn": "MRT Yanchengpu Station (Daren Rd.)",
+        "UpdateTime": "2026-09-26T15:31:18"
+    }
+]
