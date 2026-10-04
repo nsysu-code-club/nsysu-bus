@@ -1,0 +1,32 @@
+[
+    {
+        "Name":"橘1",
+        "RouteID":901,
+        "Departure":"文學院",
+        "Destination":"哈瑪星旅運接駁中心(輕軌哈瑪星站)"
+    },
+    {
+        "Name":"橘1(延)",
+        "RouteID":9011,
+        "Departure":"慈德堂",
+        "Destination":"哈瑪星旅運接駁中心(輕軌哈瑪星站)"
+    },
+    {
+        "Name":"50五福幹線",
+        "RouteID":50,
+        "Departure":"鼓山輪渡站",
+        "Destination":"建軍站(捷運衛武營站)"
+    },
+    {
+        "Name":"219A",
+        "RouteID":219,
+        "Departure":"捷運鹽埕埔站(大仁路)",
+        "Destination":"加昌站"
+    },
+    {
+        "Name":"219B",
+        "RouteID":2192,
+        "Departure":"捷運鹽埕埔站(大仁路)",
+        "Destination":"加昌站"
+    }
+]
