@@ -1,171 +1,100 @@
 import json
+from datetime import datetime, timezone
+from pathlib import Path
+
 import requests
-import urllib3
-import os
-import time
-from datetime import datetime
 
-urllib3.disable_warnings()
+URL = "https://ibusplus.tbkc.gov.tw/bsuper"
+ROOT = Path(__file__).resolve().parent
 
-URL = "https://ibus.tbkc.gov.tw/ibus/graphql"
 
-PROXIES = {
-    "http": "http://220.134.5.4:8080",
-    "https": "http://220.134.5.4:8080",
-}
+def text(value):
+    value = str(value).strip() if value is not None else ""
+    return "" if value.lower() == "null" else value
 
-QUERY_ROUTE = """
-fragment busesFragment on RouteBusConnection { edges { node { id } } }
-query QUERY_ROUTE_FOR_MAP_CONTENT($routeId: Int!, $lang: String!) {
-    route(xno: $routeId, lang: $lang) {
-        departure
-        destination
-        buses { ...busesFragment }
-    }
-}
-"""
 
-QUERY_SIDE_ROUTES = """
-query QUERY_SIDE_ROUTES($lang: String!) {
-    routes(lang: $lang) {
-        edges {
-            node {
-                id, opType, seq, name, description
-            }
-        }
-    }
-}
-"""
+def refresh_token(session):
+    response = session.post(f"{URL}/Token/Web", timeout=30)
+    response.raise_for_status()
+    data = response.json()
+    token = data.get("access_token") if isinstance(data, dict) else data
+    if not isinstance(token, str) or not token.strip():
+        raise ValueError("No guest token returned")
+    session.headers["Authorization"] = f"Bearer {token}"
 
-def fetch_all_routes_info(lang):
-    for attempt in range(5):
-        try:
-            response = requests.post(
-                URL, 
-                json={'query': QUERY_SIDE_ROUTES, 'variables': {'lang': lang}}, 
-                verify=False,
-                proxies=PROXIES,
-                timeout=20
-            )
-            data = response.json()
-            routes_map = {}
-            if 'data' in data and data['data']['routes']:
-                for edge in data['data']['routes']['edges']:
-                    node = edge['node']
-                    routes_map[int(node['id'])] = node['name']
-            return routes_map
-        except Exception as e:
-            print(f"Error fetching all routes for {lang} (Attempt {attempt + 1}/3): {e}")
-            if attempt < 2:
-                time.sleep(1)
-    return {}
 
-def fetch_route_data(route_id, lang):
-    for attempt in range(5):
-        try:
-            response = requests.post(
-                URL, 
-                json={'query': QUERY_ROUTE, 'variables': {'routeId': route_id, 'lang': lang}}, 
-                verify=False,
-                proxies=PROXIES,
-                timeout=15
-            )
-            data = response.json()
-            if 'data' in data and data['data']['route']:
-                return data['data']['route']
-            return None
-        except Exception as e:
-            print(f"Error fetching route {route_id} for {lang} (Attempt {attempt + 1}/3): {e}")
-            if attempt < 2:
-                time.sleep(1)
-    return None
-
-def process_language(lang_code, list_file, output_file, name_key, dep_key, dest_key):
-    try:
-        with open(list_file, 'r', encoding='utf-8') as f:
-            routes = json.load(f)
-    except Exception as e:
-        print(f"Error reading {list_file}: {e}")
-        return
-
-    routes_info_map = fetch_all_routes_info(lang_code)
-
-    result = []
-    for route in routes:
-        route_id = route.get('RouteID')
-        if not route_id:
+def fetch_stops(session, route_id, direction):
+    payload = [{"id": str(route_id), "direction": direction}]
+    for attempt in range(2):
+        response = session.post(
+            f"{URL}/Extended/Dal/CustomEstimateTime?extraType=All",
+            json=payload, timeout=30,
+        )
+        if response.status_code == 401 and attempt == 0:
+            refresh_token(session)
             continue
-        
-        print(f"Fetching {route_id} ({lang_code})...")
-        route_data = fetch_route_data(route_id, lang_code)
-        
-        car_ids = ""
-        departure = route.get(dep_key, "")
-        destination = route.get(dest_key, "")
-        name = routes_info_map.get(route_id, route.get(name_key, ""))
-        
-        if route_data:
-            # Get buses
-            buses = route_data.get('buses', {}).get('edges', [])
+        response.raise_for_status()
+        data = response.json()
+        if data.get("status") != 0 or not isinstance(data.get("data"), list):
+            raise ValueError("Arrival API reported failure")
+        stops = [stop for group in data["data"] for stop in group]
+        if not stops or any(
+            text(stop.get("routeid")) != str(route_id)
+            or text(stop.get("direction")) != str(direction) for stop in stops
+        ):
+            raise ValueError("Missing stops or unexpected route/direction")
+        return stops
 
-            if buses:
-                car_ids = "".join([bus['node']['id'] + "," for bus in buses])
-            
-            # Optionally update departure/destination from API if preferred, 
-            # but the existing json seems to use its own or we can use API's
-            # For now let's use what the API returned, or fallback to the list
-            if route_data.get('departure'):
-                departure = route_data['departure']
-            if route_data.get('destination'):
-                destination = route_data['destination']
 
-        stop_name = ""
-        if not car_ids:
-            stop_name = "未行駛" if lang_code == "zh" else "Out of service"
+def vehicle_ids(stops):
+    ids = set()
+    for stop in stops:
+        candidates = [stop.get("carId")]
+        candidates.extend(eta.get("busId") for eta in (stop.get("etas") or []))
+        for candidate in candidates:
+            ids.update(part.strip() for part in text(candidate).split(",") if part.strip())
+    return sorted(ids)
 
-        item = {
-            **({"CarID": car_ids} if car_ids else {}),
-            "StopName": stop_name,
-            "RouteID": route_id,
-            name_key: name,
-            "isOpenData": "Y",
-            dep_key: departure,
-            dest_key: destination,
-            "UpdateTime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        }
-        # In bus_info_data_zh.json, "Name" is used instead of "NameZh" or something
-        if lang_code == "zh" and "Name" in item:
-            pass # Name is already the key
-            
-        result.append(item)
-
-    # ensure the build directory exists
-    os.makedirs('build', exist_ok=True)
-    
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(result, f, ensure_ascii=False, indent=4)
-    print(f"Saved {len(result)} routes to {output_file}")
 
 def main():
-    print("Processing English routes...")
-    process_language(
-        lang_code='en', 
-        list_file='bus_list_en.json', 
-        output_file='build/bus_info_data_en.json',
-        name_key='NameEn',
-        dep_key='DepartureEn',
-        dest_key='DestinationEn'
-    )
-    
-    print("Processing Traditional Chinese routes...")
-    process_language(
-        lang_code='zh', 
-        list_file='bus_list_zh.json', 
-        output_file='build/bus_info_data_zh.json',
-        name_key='Name',
-        dep_key='Departure',
-        dest_key='Destination'
-    )
+    output = ROOT / "build"
+    output.mkdir(exist_ok=True)
+    # Leave outputs missing on failure so the workflow can restore previous data.
+    for lang in ("zh", "en"):
+        (output / f"bus_info_data_{lang}.json").unlink(missing_ok=True)
+    routes = {
+        lang: json.loads((ROOT / f"bus_list_{lang}.json").read_text(encoding="utf-8"))
+        for lang in ("zh", "en")
+    }
+    with requests.Session() as session:
+        session.headers.update({"Content-Type": "application/json", "X-Api-Version": "1"})
+        refresh_token(session)
+        for route in routes["zh"]:
+            route_id = route["RouteID"]
+            stops = fetch_stops(session, route_id, 0) + fetch_stops(session, route_id, 1)
+            ids = vehicle_ids(stops)
+            for lang, items in routes.items():
+                item = next(item for item in items if item["RouteID"] == route_id)
+                name_key = "Name" if lang == "zh" else "NameEn"
+                api_name = text(stops[0].get("routename_Zh_Tw" if lang == "zh" else "routename_En"))
+                item[name_key] = api_name or item[name_key]
+                # Keep static endpoints, including their English translations.
+                item.update({
+                    "StopName": "" if ids else ("未行駛" if lang == "zh" else "Out of service"),
+                    "isOpenData": "Y",
+                    "UpdateTime": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
+                })
+                if ids:
+                    item["CarID"] = ",".join(ids) + ","
+            print(f"{route_id}: {len(ids)} observed vehicles")
+    for lang, items in routes.items():
+        (output / f"bus_info_data_{lang}.json").write_text(
+            json.dumps(items, ensure_ascii=False, indent=4), encoding="utf-8",
+        )
 
-if __name__ == '__main__':
-    main()
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as error:
+        raise SystemExit(f"Crawler failed ({type(error).__name__}); use previous data") from None
