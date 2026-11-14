@@ -1,0 +1,49 @@
+[
+    {
+        "Name": "橘1",
+        "RouteID": 901,
+        "Departure": "文學院",
+        "Destination": "哈瑪星旅運接駁中心(輕軌哈瑪星站)",
+        "StopName": "未行駛",
+        "isOpenData": "Y",
+        "UpdateTime": "2026-11-14T15:17:59"
+    },
+    {
+        "Name": "橘1延",
+        "RouteID": 9011,
+        "Departure": "慈德堂",
+        "Destination": "哈瑪星旅運接駁中心(輕軌哈瑪星站)",
+        "StopName": "未行駛",
+        "isOpenData": "Y",
+        "UpdateTime": "2026-11-14T15:18:01"
+    },
+    {
+        "Name": "50五福幹線",
+        "RouteID": 50,
+        "Departure": "鼓山輪渡站",
+        "Destination": "建軍站(捷運衛武營站)",
+        "StopName": "",
+        "isOpenData": "Y",
+        "UpdateTime": "2026-11-14T15:18:04",
+        "CarID": "EAL-5787,"
+    },
+    {
+        "Name": "219A",
+        "RouteID": 219,
+        "Departure": "捷運鹽埕埔站(大仁路)",
+        "Destination": "加昌站",
+        "StopName": "",
+        "isOpenData": "Y",
+        "UpdateTime": "2026-11-14T15:18:06",
+        "CarID": "EAL-5707,"
+    },
+    {
+        "Name": "219B",
+        "RouteID": 2192,
+        "Departure": "捷運鹽埕埔站(大仁路)",
+        "Destination": "加昌站",
+        "StopName": "未行駛",
+        "isOpenData": "Y",
+        "UpdateTime": "2026-11-14T15:18:08"
+    }
+]
